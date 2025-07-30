@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Str;
@@ -20,10 +19,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    // protected $fillable = [
+    //     'email',
+    //     'password',
+    //     'first_name',
+    //     'last_name',
+    //     'is_active',
+    //     'username',
+    // ];
+    protected $guarded = [
+        'is_admin',
     ];
 
     /**
@@ -53,6 +58,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class)
             ->withTimestamps();
     }
+
 
     protected function fullName(): Attribute {
         return Attribute::make(
