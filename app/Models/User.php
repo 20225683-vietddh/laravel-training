@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Str;
 
 class User extends Authenticatable
 {
@@ -57,5 +57,18 @@ class User extends Authenticatable
     public function roles(): BelongsToMany {
         return $this->belongsToMany(Role::class)
             ->withTimestamps();
+    }
+
+
+    protected function fullName(): Attribute {
+        return Attribute::make(
+            get: fn () => $this->first_name . ' ' . $this->last_name,
+        );
+    }
+
+    protected function username(): Attribute {
+        return Attribute::make(
+            set: fn ($value) => Str::slug($value),
+        );
     }
 }
