@@ -1,0 +1,49 @@
+// Custom styles for Light Bootstrap Dashboard Laravel Integration
+
+// Demo page styles
+.demo-page {
+    padding: 20px;
+    
+    .card {
+        box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+        border: 0;
+        margin-bottom: 30px;
+        
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #e3e3e3;
+            
+            h4 {
+                color: #333;
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+// Sidebar customization
+.sidebar {
+    .nav {
+        li {
+            a {
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+            }
+        }
+    }
+}
+
+// Custom button styles
+.btn-custom {
+    background-color: #51cbce;
+    border-color: #51cbce;
+    color: #fff;
+    
+    &:hover {
+        background-color: #3eb7ba;
+        border-color: #3eb7ba;
+    }
+}

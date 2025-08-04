@@ -1,0 +1,17 @@
+// Light Bootstrap Dashboard Theme for Laravel
+// Import Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Import Light Bootstrap Dashboard
+@import 'light-bootstrap-dashboard';
+
+// Import custom styles
+@import 'custom';
+
+// Base styles
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    background-color: #f4f3ef;
+}
+
+// Additional custom styles can be added below

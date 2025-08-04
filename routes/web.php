@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DemoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +19,17 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('users.index');
 });
 
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
-Route::get('/users/create', [UserController::class, 'create'])
-    ->name('user.create')
-    ->middleware(['admin']);
-Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
-Route::post('/users', [UserController::class, 'store'])->name('user.store');
-Route::get('/users/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+// Demo Dashboard Route
+Route::get('/demo-dashboard', [DemoController::class, 'dashboard'])->name('demo.dashboard');
+
+// User Management Routes
+Route::resource('users', UserController::class);
+Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+
+// Task Management Routes  
 Route::resource('tasks', TaskController::class);
 
 Route::get('/dashboard', function () {
@@ -40,5 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('lang/{lang}', [\App\Http\Controllers\LanguageController::class, 'changeLanguage'])->name('lang');
 
 require __DIR__.'/auth.php';
