@@ -20,6 +20,6 @@ class CheckAdmin
         if ($user && $user->role !== 'admin') {
             return $next($request);
         }
-        return $next($request);
+        abort(401);
     }
 }
